@@ -46,6 +46,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{ (e: 'input', value: string | null): void }>();
 
+<<<<<<< HEAD
 const containerRef = ref<HTMLDivElement | null>(null);
 const inputMaskInstance = ref<Inputmask.Instance | null>(null);
 const invalid = ref(false);
@@ -78,6 +79,101 @@ onMounted(() => {
 
 	nativeInput.addEventListener('input', propagateInput);
 	nativeInput.addEventListener('blur', onBlur);
+=======
+		onMounted(() => {
+			if (!input.value) return;
+			inputMaskInstance.value = Inputmask(aliasType, {
+				...customArgs,
+				showMaskOnHover: true,
+				showMaskOnFocus: true,
+				jitMasking: false,
+				casing: props.transform as Inputmask.Casing,
+				importDataAttributes: false,
+				autoUnmask: true,
+				clearIncomplete: false,
+				tabThrough: true,
+				nullable: true,
+				oncleared: onClear,
+				// Build-in event hooks (onincomplete, oncomplete, onclear) are not sufficient do good emit.
+			}).mask(input.value);
+
+			setValue(props.value);
+		});
+
+		onUnmounted(() => {
+			if (!inputMaskInstance.value) return;
+			inputMaskInstance.value.remove();
+		});
+
+		watch(
+			() => props.value,
+			(newValue) => {
+				inputMaskInstance.value.setValue(newValue || '');
+				invalid.value = newValue && !inputMaskInstance.value.isValid(newValue);
+			}
+		);
+
+		return {
+			input,
+			propagateInput,
+			onBlur,
+			invalid,
+		};
+
+		function setValue(value: string | null) {
+			inputMaskInstance.value.setValue(value || '');
+			invalid.value = inputMaskInstance.value.hasMaskedValue() && !inputMaskInstance.value.isComplete();
+		}
+
+		function onBlur() {
+			if (inputMaskInstance.value.isComplete()) return;
+			setValue(props.value);
+		}
+
+		function onClear() {
+			invalid.value = false;
+			emitValue(null);
+		}
+
+		function onIncomplete() {
+			invalid.value = true;
+			emitValue(props.value);
+		}
+
+		function onComplete() {
+			invalid.value = false;
+			emitValue(getValue());
+		}
+
+		function propagateInput() {
+			if (inputMaskInstance.value.isComplete()) {
+				onComplete();
+			} else {
+				onIncomplete();
+			}
+		}
+
+		function emitValue(value: string | null) {
+			if (props.disabled) return;
+			if (value === props.value) return;
+
+			if (value) {
+				emit('input', value);
+			} else {
+				emit('input', null);
+			}
+		}
+
+		function getValue() {
+			const unmaskedvalue = inputMaskInstance.value.unmaskedvalue();
+
+			if (!unmaskedvalue) return null;
+			if (props.storeMasked) return inputMaskInstance.value.format(unmaskedvalue);
+
+			return unmaskedvalue;
+		}
+	},
+>>>>>>> refs/remotes/origin/main
 });
 
 onUnmounted(() => {

@@ -6,7 +6,7 @@
 
 ---
 
-![](https://raw.githubusercontent.com/dimitrov-adrian/directus-extension-masked-interface/main/screenshot.gif)
+![](https://raw.githubusercontent.com/IgorGRibeiro/directus-extension-masked-interface/main/screenshot.gif)
 
 Input text string by template.
 
@@ -38,16 +38,16 @@ Restart Directus after installation.
 
 ### Options
 
-| Option | Description |
-|---|---|
-| Placeholder | Placeholder text shown inside the input |
-| Font | Font family: Sans-serif, Monospace, or Serif |
-| Icon Left | Material Design icon displayed on the left |
-| Icon Right | Material Design icon displayed on the right |
+| Option            | Description                                                                |
+| ----------------- | -------------------------------------------------------------------------- |
+| Placeholder       | Placeholder text shown inside the input                                    |
+| Font              | Font family: Sans-serif, Monospace, or Serif                               |
+| Icon Left         | Material Design icon displayed on the left                                 |
+| Icon Right        | Material Design icon displayed on the right                                |
 | Save masked value | When enabled, stores the formatted (masked) value instead of the raw input |
-| Format value | Apply case transformation: none, uppercase, lowercase, or title case |
-| Type | Masking type — see below |
-| Template | Pattern string (only for Template and RegEx types) |
+| Format value      | Apply case transformation: none, uppercase, lowercase, or title case       |
+| Type              | Masking type — see below                                                   |
+| Template          | Pattern string (only for Template and RegEx types)                         |
 
 ### Masking types
 
@@ -63,17 +63,17 @@ Restart Directus after installation.
 
 ### Template pattern legend
 
-| Character | Meaning |
-|---|---|
-| `9` | Number |
-| `a` | Lowercase letter |
-| `A` | Uppercase letter |
-| `*` | Alphanumeric |
-| `\` | Escape next character |
-| `\|` | Alternator |
-| `[]` | Optional group |
-| `()` | Grouping |
-| `{n,[m]}` | Repeater |
+| Character | Meaning               |
+| --------- | --------------------- |
+| `9`       | Number                |
+| `a`       | Lowercase letter      |
+| `A`       | Uppercase letter      |
+| `*`       | Alphanumeric          |
+| `\`       | Escape next character |
+| `\|`      | Alternator            |
+| `[]`      | Optional group        |
+| `()`      | Grouping              |
+| `{n,[m]}` | Repeater              |
 
 ## How it works
 

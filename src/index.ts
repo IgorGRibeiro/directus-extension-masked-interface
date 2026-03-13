@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Original work Copyright (C) 2020 Adrian Dimitrov (https://github.com/dimitrov-adrian/directus-extension-masked-interface)
+// Modifications Copyright (C) 2026 Ribertec — updated for Directus 10 and 11 compatibility
+
 import { defineInterface } from '@directus/extensions-sdk';
 import InterfaceComponent from './interface.vue';
 
@@ -8,14 +12,14 @@ export default defineInterface({
 	icon: 'spellcheck',
 	component: InterfaceComponent,
 	types: ['string', 'integer', 'bigInteger', 'float', 'decimal'],
-	group: 'standard',
+
 	options: [
 		{
 			field: 'placeholder',
 			name: '$t:placeholder',
 			meta: {
 				width: 'half',
-				interface: 'text-input',
+				interface: 'input',
 				options: {
 					placeholder: '$t:enter_a_placeholder',
 				},
@@ -64,7 +68,7 @@ export default defineInterface({
 			type: 'boolean',
 			meta: {
 				width: 'half',
-				interface: 'toggle',
+				interface: 'boolean',
 				options: {
 					label: '$t:interfaces.input-hash.masked',
 				},
@@ -124,7 +128,7 @@ export default defineInterface({
 			name: '$t:template',
 			type: 'string',
 			meta: {
-				interface: 'text-input',
+				interface: 'input',
 				width: 'half',
 				hidden: true,
 				conditions: [

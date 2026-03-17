@@ -1,6 +1,6 @@
 {
   "name": "@ribertec/directus-extension-masked-interface",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Masked text input interface for Directus",
   "type": "module",
   "author": "@ribertec",
